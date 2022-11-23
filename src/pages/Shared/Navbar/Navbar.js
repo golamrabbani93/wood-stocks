@@ -10,10 +10,13 @@ const Navbar = () => {
 			<NavLink className="mr-7" to={'/'} end>
 				Home
 			</NavLink>
+			<NavLink className="mr-7" to={'/about'}>
+				About
+			</NavLink>
 		</>
 	);
 	return (
-		<header className="">
+		<header className="relative z-10 text-white">
 			<div className="navbar container mx-auto">
 				<div className="navbar-start">
 					<div className="dropdown">
@@ -48,11 +51,11 @@ const Navbar = () => {
 							''
 						)}
 					</div>
-					<Link className="btn text-center hidden md:block btn-ghost hover:bg-transparent text-primary font-extrabold normal-case text-2xl">
+					<Link className="btn text-center hidden md:block btn-ghost hover:bg-transparent text-white font-extrabold normal-case text-3xl">
 						SitPad
 					</Link>
 				</div>
-				<Link className="btn text-center normal-case hover:bg-transparent text-primary font-extrabold md:hidden text-xl">
+				<Link className="btn text-center normal-case hover:bg-transparent text-white font-extrabold md:hidden text-xl">
 					SitPad
 				</Link>
 				<div className="navbar-center hidden lg:flex">
