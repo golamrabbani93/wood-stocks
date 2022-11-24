@@ -6,7 +6,7 @@ import {AuthContext} from '../../../Context/AuthProvider';
 import UseTitle from '../../../hooks/UseTitle';
 const Login = () => {
 	UseTitle('Login | Woods Stocks');
-	const {LoginUser} = useContext(AuthContext);
+	const {LoginUser, loginGoogle} = useContext(AuthContext);
 	const {
 		register,
 		handleSubmit,
@@ -16,12 +16,43 @@ const Login = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 	const from = location.state?.from?.pathname || '/';
+	//*Login With Email and Password
 	const handleSLogin = (data) => {
 		const {email, password} = data;
 		LoginUser(email, password)
 			.then((result) => {
 				// const user = result.user;
 				toast.success('Login Successfull', {
+					style: {
+						border: '1px solid #6C4AB6',
+						padding: '16px',
+						color: '#6C4AB6',
+						fontWeight: 'bold',
+					},
+				});
+				navigate(from, {replace: true});
+				reset();
+			})
+			.catch((err) => {
+				console.error(err);
+				const message = err.message;
+				const cutMessage = message.split('/')[1].split(')')[0];
+				toast.error(`Opps! ${cutMessage}`, {
+					style: {
+						border: '1px solid #6C4AB6',
+						padding: '16px',
+						color: '#6C4AB6',
+						fontWeight: 'bold',
+					},
+				});
+			});
+	};
+	//*Login With Google
+	const handleGoogleLogin = () => {
+		loginGoogle()
+			.then((result) => {
+				// const user = result.user;
+				toast.success('Google Login Successfull', {
 					style: {
 						border: '1px solid #6C4AB6',
 						padding: '16px',
@@ -89,7 +120,7 @@ const Login = () => {
 					</div>
 					<input
 						className="btn btn-outline btn-primary w-full mt-4 mb-3"
-						value="Sign Up"
+						value="Login"
 						type="submit"
 					/>
 				</form>
@@ -100,7 +131,10 @@ const Login = () => {
 					</Link>
 				</p>
 				<div className="divider">OR</div>
-				<button className="btn btn-outline btn-primary mx-auto h-full flex justify-center items-center">
+				<button
+					onClick={handleGoogleLogin}
+					className="btn btn-outline btn-primary mx-auto h-full flex justify-center items-center"
+				>
 					<img
 						src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1200px-Google_%22G%22_Logo.svg.png"
 						alt=""
