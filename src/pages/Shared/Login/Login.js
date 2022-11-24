@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {useForm} from 'react-hook-form';
 import toast from 'react-hot-toast';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link, useLocation, useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../../Context/AuthProvider';
 import UseTitle from '../../../hooks/UseTitle';
 const Login = () => {
@@ -14,6 +14,8 @@ const Login = () => {
 		reset,
 	} = useForm();
 	const navigate = useNavigate();
+	const location = useLocation();
+	const from = location.state?.from?.pathname || '/';
 	const handleSLogin = (data) => {
 		const {email, password} = data;
 		LoginUser(email, password)
@@ -27,7 +29,7 @@ const Login = () => {
 						fontWeight: 'bold',
 					},
 				});
-				navigate('/');
+				navigate(from, {replace: true});
 				reset();
 			})
 			.catch((err) => {
