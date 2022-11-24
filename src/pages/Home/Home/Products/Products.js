@@ -4,7 +4,7 @@ import SingleProduct from './SingleProduct';
 
 const Products = () => {
 	const {data: Categories = []} = useQuery({
-		queryKey: ['appointmentOptions'],
+		queryKey: ['categories'],
 		queryFn: async () => {
 			const res = await fetch('http://localhost:5000/categories');
 			const data = await res.json();
