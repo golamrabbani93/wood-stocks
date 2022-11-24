@@ -6,7 +6,7 @@ import {AuthContext} from '../../../Context/AuthProvider';
 import UseTitle from '../../../hooks/UseTitle';
 const SignUp = () => {
 	UseTitle('Signup | Wood Stocks');
-	const {createUser} = useContext(AuthContext);
+	const {createUser, userUpdate} = useContext(AuthContext);
 	const {
 		register,
 		handleSubmit,
@@ -17,7 +17,8 @@ const SignUp = () => {
 		const {name, email, password} = data;
 		createUser(email, password)
 			.then((result) => {
-				const user = result.user;
+				// const user = result.user;
+				handleUpdate(name);
 				toast.success('Sign Up Successfull', {
 					style: {
 						border: '1px solid #6C4AB6',
@@ -30,6 +31,26 @@ const SignUp = () => {
 			})
 			.catch((err) => {
 				console.error(err);
+				const message = err.message;
+				const cutMessage = message.split('/')[1].split(')')[0];
+				toast.error(`Opps! ${cutMessage}`, {
+					style: {
+						border: '1px solid #6C4AB6',
+						padding: '16px',
+						color: '#6C4AB6',
+						fontWeight: 'bold',
+					},
+				});
+			});
+	};
+	//*handle update name
+	const handleUpdate = (name) => {
+		const profile = {
+			displayName: name,
+		};
+		userUpdate(profile)
+			.then((result) => {})
+			.catch((err) => {
 				const message = err.message;
 				const cutMessage = message.split('/')[1].split(')')[0];
 				toast.error(`Opps! ${cutMessage}`, {
