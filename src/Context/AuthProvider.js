@@ -1,5 +1,5 @@
 import React, {createContext, useState} from 'react';
-import {createUserWithEmailAndPassword, getAuth} from 'firebase/auth';
+import {createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword} from 'firebase/auth';
 import app from '../firebase/firebase.config';
 import {createBrowserRouter} from 'react-router-dom';
 
@@ -9,10 +9,15 @@ const AuthProvider = ({children}) => {
 
 	const [user, setUser] = useState('Rabbani');
 
+	//*create user
 	const createUser = (email, password) => {
 		return createUserWithEmailAndPassword(auth, email, password);
 	};
-	const info = {user, createUser};
+	//*create user
+	const LoginUser = (email, password) => {
+		return signInWithEmailAndPassword(auth, email, password);
+	};
+	const info = {user, createUser, LoginUser};
 	return <AuthContext.Provider value={info}>{children}</AuthContext.Provider>;
 };
 
