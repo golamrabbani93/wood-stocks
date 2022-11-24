@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 
 const SingleProduct = ({category}) => {
 	const {category_id, category_name, img} = category;
-	console.log('🚀🚀: SingleProduct -> category_name', category_name);
 	return (
 		<div className="card w-96 bg-base-100 shadow-xl image-full">
 			<figure>

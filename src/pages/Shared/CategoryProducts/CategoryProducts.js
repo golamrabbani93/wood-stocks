@@ -10,7 +10,7 @@ const CategoryProducts = () => {
 			<h2 className="text-primary text-4xl font-semibold uppercase">{products[0].category_name}</h2>
 			<div className=" mt-10">
 				{products.map((product) => (
-					<SingleCategoryProduct key={product._id}></SingleCategoryProduct>
+					<SingleCategoryProduct key={product._id} product={product}></SingleCategoryProduct>
 				))}
 			</div>
 		</div>
