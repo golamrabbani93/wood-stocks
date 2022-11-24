@@ -1,5 +1,6 @@
 import React, {useContext, useState} from 'react';
 import {useForm} from 'react-hook-form';
+import toast from 'react-hot-toast';
 import {Link} from 'react-router-dom';
 import {AuthContext} from '../../../Context/AuthProvider';
 import UseTitle from '../../../hooks/UseTitle';
@@ -12,18 +13,34 @@ const SignUp = () => {
 		formState: {errors},
 		reset,
 	} = useForm();
-	const [error, setError] = useState('');
 	const handleSignUp = (data) => {
 		const {name, email, password} = data;
 		createUser(email, password)
 			.then((result) => {
 				const user = result.user;
-				console.log('🚀🚀: handleSignUp -> user', user);
+				toast.success('Sign Up Successfull', {
+					style: {
+						border: '1px solid #6C4AB6',
+						padding: '16px',
+						color: '#6C4AB6',
+						fontWeight: 'bold',
+					},
+				});
+				reset();
 			})
 			.catch((err) => {
 				console.error(err);
+				const message = err.message;
+				const cutMessage = message.split('/')[1].split(')')[0];
+				toast.error(`Opps! ${cutMessage}`, {
+					style: {
+						border: '1px solid #6C4AB6',
+						padding: '16px',
+						color: '#6C4AB6',
+						fontWeight: 'bold',
+					},
+				});
 			});
-		reset();
 	};
 	return (
 		<div className=" flex justify-center items-center text-left">
@@ -81,7 +98,7 @@ const SignUp = () => {
 						</span>
 					</div>
 					<input className="btn btn-accent w-full mt-4" value="Sign Up" type="submit" />
-					<span className="mt-1"> {error && <p className="text-red-600">{error}</p>}</span>
+					{/* <span className="mt-1"> {error && <p className="text-red-600">{error}</p>}</span> */}
 				</form>
 				<p>
 					New to Wood Stocks
