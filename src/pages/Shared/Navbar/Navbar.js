@@ -56,14 +56,14 @@ const Navbar = () => {
 						to={'/'}
 						className="btn text-center hidden md:block btn-ghost hover:bg-transparent text-primary font-extrabold normal-case text-3xl"
 					>
-						Wood Stocks
+						Woods Stocks
 					</Link>
 				</div>
 				<Link
 					to={'/'}
 					className="btn text-center normal-case hover:bg-transparent text-primary font-extrabold md:hidden text-xl"
 				>
-					Wood Stock
+					Woods Stock
 				</Link>
 				<div className="navbar-center hidden lg:flex">
 					<ul className="menu menu-horizontal p-0">{navItems}</ul>

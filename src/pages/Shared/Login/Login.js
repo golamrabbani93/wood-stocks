@@ -5,7 +5,7 @@ import {Link, useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../../Context/AuthProvider';
 import UseTitle from '../../../hooks/UseTitle';
 const Login = () => {
-	UseTitle('Login | Wood Stocks');
+	UseTitle('Login | Woods Stocks');
 	const {LoginUser} = useContext(AuthContext);
 	const {
 		register,

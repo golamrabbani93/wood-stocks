@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import {AuthContext} from '../../../Context/AuthProvider';
 import UseTitle from '../../../hooks/UseTitle';
 const SignUp = () => {
-	UseTitle('Signup | Wood Stocks');
+	UseTitle('Signup | Woods Stocks');
 	const {createUser, userUpdate} = useContext(AuthContext);
 	const {
 		register,

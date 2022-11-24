@@ -4,7 +4,7 @@ import Banner from '../Banner/Banner';
 import Products from '../Products/Products';
 
 const Home = () => {
-	UseTitle('Home | Wood Stocks');
+	UseTitle('Home | Woods Stocks');
 	return (
 		<div>
 			<Banner></Banner>
