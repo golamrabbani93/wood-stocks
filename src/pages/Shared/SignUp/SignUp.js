@@ -2,7 +2,9 @@ import React, {useContext, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import {Link} from 'react-router-dom';
 import {AuthContext} from '../../../Context/AuthProvider';
+import UseTitle from '../../../hooks/UseTitle';
 const SignUp = () => {
+	UseTitle('Signup | Wood Stocks');
 	const {createUser} = useContext(AuthContext);
 	const {
 		register,
@@ -11,7 +13,18 @@ const SignUp = () => {
 		reset,
 	} = useForm();
 	const [error, setError] = useState('');
-	const handleSignUp = (data) => {};
+	const handleSignUp = (data) => {
+		const {name, email, password} = data;
+		createUser(email, password)
+			.then((result) => {
+				const user = result.user;
+				console.log('🚀🚀: handleSignUp -> user', user);
+			})
+			.catch((err) => {
+				console.error(err);
+			});
+		reset();
+	};
 	return (
 		<div className=" flex justify-center items-center text-left">
 			<div className="w-96 p-7 pt-3">
