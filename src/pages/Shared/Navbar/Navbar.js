@@ -4,7 +4,7 @@ import {AuthContext} from '../../../Context/AuthProvider';
 import './Navbar.css';
 
 const Navbar = () => {
-	const {user} = useContext(AuthContext);
+	const {user, userSignOut} = useContext(AuthContext);
 	const [menu, sentMenu] = useState(false);
 	const navItems = (
 		<>
@@ -85,12 +85,14 @@ const Navbar = () => {
 									<Link>Settings</Link>
 								</li>
 								<li>
-									<Link>Logout</Link>
+									<button onClick={userSignOut}>Logout</button>
 								</li>
 							</ul>
 						</div>
 					) : (
-						<Link className="btn">Login</Link>
+						<Link to={'/login'} className="btn">
+							Login
+						</Link>
 					)}
 				</div>
 			</div>
