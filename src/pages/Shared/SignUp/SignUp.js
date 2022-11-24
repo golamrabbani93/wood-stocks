@@ -1,7 +1,9 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import {Link} from 'react-router-dom';
+import {AuthContext} from '../../../Context/AuthProvider';
 const SignUp = () => {
+	const {createUser} = useContext(AuthContext);
 	const {
 		register,
 		handleSubmit,
@@ -9,10 +11,7 @@ const SignUp = () => {
 		reset,
 	} = useForm();
 	const [error, setError] = useState('');
-	const handleSignUp = (data) => {
-		console.log(data);
-		reset();
-	};
+	const handleSignUp = (data) => {};
 	return (
 		<div className=" flex justify-center items-center text-left">
 			<div className="w-96 p-7 pt-3">
