@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {useForm} from 'react-hook-form';
 import toast from 'react-hot-toast';
 import {Link} from 'react-router-dom';
@@ -17,7 +17,6 @@ const SignUp = () => {
 		const {name, email, password} = data;
 		createUser(email, password)
 			.then((result) => {
-				// const user = result.user;
 				handleUpdate(name);
 				toast.success('Sign Up Successfull', {
 					style: {
