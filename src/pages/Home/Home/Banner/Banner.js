@@ -11,7 +11,7 @@ const Banner = () => {
 		<div className="">
 			<div className=" grid grid-cols-2 gap-6 h-screen justify-center items-center">
 				<div className="flex flex-col justify-center items-center h-full">
-					<h2 className="text-primary font-bold text-7xl">WE CARRY ONLY THE FINEST</h2>
+					<h2 className="text-primary font-bold text-5xl">Best Design of Furniture Collection</h2>
 					<h3 className="text-secondary font-bold text-xl mt-5">ITEMS AVAILABLE</h3>
 				</div>
 				<div className="images mr-5">

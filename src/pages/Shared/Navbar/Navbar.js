@@ -52,11 +52,11 @@ const Navbar = () => {
 						)}
 					</div>
 					<Link className="btn text-center hidden md:block btn-ghost hover:bg-transparent text-primary font-extrabold normal-case text-3xl">
-						SitPad
+						Wood Stocks
 					</Link>
 				</div>
 				<Link className="btn text-center normal-case hover:bg-transparent text-primary font-extrabold md:hidden text-xl">
-					SitPad
+					Wood Stock
 				</Link>
 				<div className="navbar-center hidden lg:flex">
 					<ul className="menu menu-horizontal p-0">{navItems}</ul>
