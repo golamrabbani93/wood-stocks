@@ -1,8 +1,11 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Link, NavLink} from 'react-router-dom';
+import {AuthContext} from '../../../Context/AuthProvider';
 import './Navbar.css';
 
 const Navbar = () => {
+	const {user} = useContext(AuthContext);
+	console.log('🚀🚀: Navbar -> user', user);
 	const [menu, sentMenu] = useState(false);
 	console.log('🚀🚀: Navbar -> menu', menu);
 	const navItems = (
@@ -12,6 +15,9 @@ const Navbar = () => {
 			</NavLink>
 			<NavLink className="mr-7" to={'/about'}>
 				About
+			</NavLink>
+			<NavLink className="mr-7" to={'/about'}>
+				{user}
 			</NavLink>
 		</>
 	);
