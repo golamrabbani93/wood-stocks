@@ -1,10 +1,12 @@
 import {useQuery} from '@tanstack/react-query';
 import React from 'react';
 import {useParams} from 'react-router-dom';
+import UseTitle from '../../../hooks/UseTitle';
 import Loader from '../Loader/Loader';
 import SingleCategoryProduct from './SingleCategoryProduct';
 
 const CategoryProducts = () => {
+	UseTitle(`Products | Woods Stocks`);
 	const {category_id} = useParams();
 	const {data: products = [], isLoading} = useQuery({
 		queryKey: ['products', category_id],
