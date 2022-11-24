@@ -1,6 +1,7 @@
 import {useQuery} from '@tanstack/react-query';
 import React from 'react';
 import {useParams} from 'react-router-dom';
+import Loader from '../Loader/Loader';
 import SingleCategoryProduct from './SingleCategoryProduct';
 
 const CategoryProducts = () => {
@@ -14,7 +15,7 @@ const CategoryProducts = () => {
 		},
 	});
 	if (isLoading) {
-		return <h3>loading</h3>;
+		return <Loader></Loader>;
 	}
 	return (
 		<div className="mt-12 container mx-auto">
