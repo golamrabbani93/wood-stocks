@@ -4,10 +4,7 @@ import {AuthContext} from '../../../Context/AuthProvider';
 import './Navbar.css';
 
 const Navbar = () => {
-	const {user} = useContext(AuthContext);
-	console.log('🚀🚀: Navbar -> user', user);
 	const [menu, sentMenu] = useState(false);
-	console.log('🚀🚀: Navbar -> menu', menu);
 	const navItems = (
 		<>
 			<NavLink className="mr-7" to={'/'} end>
@@ -15,9 +12,6 @@ const Navbar = () => {
 			</NavLink>
 			<NavLink className="mr-7" to={'/about'}>
 				About
-			</NavLink>
-			<NavLink className="mr-7" to={'/about'}>
-				{user}
 			</NavLink>
 		</>
 	);

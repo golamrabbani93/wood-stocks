@@ -1,67 +1,26 @@
-import React, {useContext, useState} from 'react';
+import React from 'react';
 import {useForm} from 'react-hook-form';
 import toast from 'react-hot-toast';
 import {Link} from 'react-router-dom';
 import {AuthContext} from '../../../Context/AuthProvider';
 import UseTitle from '../../../hooks/UseTitle';
-const SignUp = () => {
-	UseTitle('Signup | Wood Stocks');
-	const {createUser} = useContext(AuthContext);
+const Login = () => {
+	UseTitle('Login | Wood Stocks');
 	const {
 		register,
 		handleSubmit,
 		formState: {errors},
 		reset,
 	} = useForm();
-	const handleSignUp = (data) => {
-		const {name, email, password} = data;
-		createUser(email, password)
-			.then((result) => {
-				const user = result.user;
-				toast.success('Sign Up Successfull', {
-					style: {
-						border: '1px solid #6C4AB6',
-						padding: '16px',
-						color: '#6C4AB6',
-						fontWeight: 'bold',
-					},
-				});
-				reset();
-			})
-			.catch((err) => {
-				console.error(err);
-				const message = err.message;
-				const cutMessage = message.split('/')[1].split(')')[0];
-				toast.error(`Opps! ${cutMessage}`, {
-					style: {
-						border: '1px solid #6C4AB6',
-						padding: '16px',
-						color: '#6C4AB6',
-						fontWeight: 'bold',
-					},
-				});
-			});
+	const handleSLogin = (data) => {
+		const {email, password} = data;
 	};
 	return (
 		<div className=" flex justify-center items-center text-left">
 			<div className="w-96 p-7 pt-3">
-				<h2 className="text-2xl text-center font-bold">Sign Up</h2>
-				<form onSubmit={handleSubmit(handleSignUp)}>
-					<div className="form-control w-full max-w-xs">
-						<label className="label">
-							<span className="label-text">Name</span>
-						</label>
-						<input
-							type="text"
-							{...register('name', {
-								required: 'Please Enter Your Name',
-							})}
-							className="input input-bordered w-full max-w-xs"
-						/>
-						<span className="mt-1">
-							{errors.name && <p className="text-red-500">{errors.name.message}</p>}
-						</span>
-					</div>
+				<h2 className="text-2xl text-center font-bold">Login</h2>
+				<form onSubmit={handleSubmit(handleSLogin)}>
+					<div className="form-control w-full max-w-xs"></div>
 					<div className="form-control w-full max-w-xs">
 						<label className="label">
 							<span className="label-text">Email</span>
@@ -105,8 +64,8 @@ const SignUp = () => {
 				</form>
 				<p>
 					New to Wood Stocks
-					<Link className="text-primary" to="/login">
-						<span className=" ml-2">Login</span>
+					<Link className="text-primary" to="/signup">
+						<span className=" ml-2">sign up</span>
 					</Link>
 				</p>
 				<div className="divider">OR</div>
@@ -122,4 +81,4 @@ const SignUp = () => {
 	);
 };
 
-export default SignUp;
+export default Login;
