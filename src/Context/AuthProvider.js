@@ -1,7 +1,6 @@
 import React, {createContext, useState} from 'react';
 import {createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword} from 'firebase/auth';
 import app from '../firebase/firebase.config';
-import {createBrowserRouter} from 'react-router-dom';
 
 export const AuthContext = createContext();
 const AuthProvider = ({children}) => {

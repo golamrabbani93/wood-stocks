@@ -1,19 +1,48 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {useForm} from 'react-hook-form';
 import toast from 'react-hot-toast';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../../Context/AuthProvider';
 import UseTitle from '../../../hooks/UseTitle';
 const Login = () => {
 	UseTitle('Login | Wood Stocks');
+	const {LoginUser} = useContext(AuthContext);
 	const {
 		register,
 		handleSubmit,
 		formState: {errors},
 		reset,
 	} = useForm();
+	const navigate = useNavigate();
 	const handleSLogin = (data) => {
 		const {email, password} = data;
+		LoginUser(email, password)
+			.then((result) => {
+				// const user = result.user;
+				toast.success('Login Successfull', {
+					style: {
+						border: '1px solid #6C4AB6',
+						padding: '16px',
+						color: '#6C4AB6',
+						fontWeight: 'bold',
+					},
+				});
+				navigate('/');
+				reset();
+			})
+			.catch((err) => {
+				console.error(err);
+				const message = err.message;
+				const cutMessage = message.split('/')[1].split(')')[0];
+				toast.error(`Opps! ${cutMessage}`, {
+					style: {
+						border: '1px solid #6C4AB6',
+						padding: '16px',
+						color: '#6C4AB6',
+						fontWeight: 'bold',
+					},
+				});
+			});
 	};
 	return (
 		<div className=" flex justify-center items-center text-left">
