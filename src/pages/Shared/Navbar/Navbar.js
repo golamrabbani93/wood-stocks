@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react';
 import {Link, NavLink} from 'react-router-dom';
 import {AuthContext} from '../../../Context/AuthProvider';
 import './Navbar.css';
-
+import {FaUserAlt} from 'react-icons/fa';
 const Navbar = () => {
 	const {user, userSignOut} = useContext(AuthContext);
 	const [menu, sentMenu] = useState(false);
@@ -52,11 +52,17 @@ const Navbar = () => {
 							''
 						)}
 					</div>
-					<Link className="btn text-center hidden md:block btn-ghost hover:bg-transparent text-primary font-extrabold normal-case text-3xl">
+					<Link
+						to={'/'}
+						className="btn text-center hidden md:block btn-ghost hover:bg-transparent text-primary font-extrabold normal-case text-3xl"
+					>
 						Wood Stocks
 					</Link>
 				</div>
-				<Link className="btn text-center normal-case hover:bg-transparent text-primary font-extrabold md:hidden text-xl">
+				<Link
+					to={'/'}
+					className="btn text-center normal-case hover:bg-transparent text-primary font-extrabold md:hidden text-xl"
+				>
 					Wood Stock
 				</Link>
 				<div className="navbar-center hidden lg:flex">
@@ -90,8 +96,12 @@ const Navbar = () => {
 							</ul>
 						</div>
 					) : (
-						<Link to={'/login'} className="btn">
-							Login
+						<Link
+							to={'/login'}
+							className="btn btn-outline btn-primary flex justify-center items-center"
+						>
+							<FaUserAlt className="w-3"></FaUserAlt>
+							<span className="ml-1 mt-1 uppercase ">Login</span>
 						</Link>
 					)}
 				</div>
