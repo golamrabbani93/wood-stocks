@@ -17,54 +17,55 @@ const SignUp = () => {
 	//*Create user With EEail and Password
 	const handleSignUp = (data) => {
 		const {name, email, password} = data;
-		createUser(email, password)
-			.then((result) => {
-				handleUpdate(name);
-				toast.success('Sign Up Successfull', {
-					style: {
-						border: '1px solid #6C4AB6',
-						padding: '16px',
-						color: '#6C4AB6',
-						fontWeight: 'bold',
-					},
-				});
-				navigate('/login');
-				reset();
-			})
-			.catch((err) => {
-				console.error(err);
-				const message = err.message;
-				const cutMessage = message.split('/')[1].split(')')[0];
-				toast.error(`Opps! ${cutMessage}`, {
-					style: {
-						border: '1px solid #6C4AB6',
-						padding: '16px',
-						color: '#6C4AB6',
-						fontWeight: 'bold',
-					},
-				});
-			});
+		console.log('🚀🚀: handleSignUp -> data', data);
+		// createUser(email, password)
+		// 	.then((result) => {
+		// 		handleUpdate(name);
+		// 		toast.success('Sign Up Successfull', {
+		// 			style: {
+		// 				border: '1px solid #6C4AB6',
+		// 				padding: '16px',
+		// 				color: '#6C4AB6',
+		// 				fontWeight: 'bold',
+		// 			},
+		// 		});
+		// 		navigate('/login');
+		// 		reset();
+		// 	})
+		// 	.catch((err) => {
+		// 		console.error(err);
+		// 		const message = err.message;
+		// 		const cutMessage = message.split('/')[1].split(')')[0];
+		// 		toast.error(`Opps! ${cutMessage}`, {
+		// 			style: {
+		// 				border: '1px solid #6C4AB6',
+		// 				padding: '16px',
+		// 				color: '#6C4AB6',
+		// 				fontWeight: 'bold',
+		// 			},
+		// 		});
+		// 	});
 	};
 	//*handle update name
-	const handleUpdate = (name) => {
-		const profile = {
-			displayName: name,
-		};
-		userUpdate(profile)
-			.then((result) => {})
-			.catch((err) => {
-				const message = err.message;
-				const cutMessage = message.split('/')[1].split(')')[0];
-				toast.error(`Opps! ${cutMessage}`, {
-					style: {
-						border: '1px solid #6C4AB6',
-						padding: '16px',
-						color: '#6C4AB6',
-						fontWeight: 'bold',
-					},
-				});
-			});
-	};
+	// const handleUpdate = (name) => {
+	// 	const profile = {
+	// 		displayName: name,
+	// 	};
+	// 	userUpdate(profile)
+	// 		.then((result) => {})
+	// 		.catch((err) => {
+	// 			const message = err.message;
+	// 			const cutMessage = message.split('/')[1].split(')')[0];
+	// 			toast.error(`Opps! ${cutMessage}`, {
+	// 				style: {
+	// 					border: '1px solid #6C4AB6',
+	// 					padding: '16px',
+	// 					color: '#6C4AB6',
+	// 					fontWeight: 'bold',
+	// 				},
+	// 			});
+	// 		});
+	// };
 	const handleGoogleLogin = () => {
 		loginGoogle()
 			.then((result) => {
@@ -148,6 +149,16 @@ const SignUp = () => {
 							{errors.password && <p className="text-red-500">{errors.password.message}</p>}
 						</span>
 					</div>
+					<div className="form-control w-full max-w-xs">
+						<label className="label">
+							<span className="label-text">Role</span>
+						</label>
+						<select {...register('userRole')} className="select select-primary w-full max-w-xs">
+							<option>Buyer</option>
+							<option value="Seller">Seller</option>
+						</select>
+					</div>
+
 					<input
 						className="btn btn-outline btn-primary w-full mt-4 mb-3"
 						value="Sign Up"
