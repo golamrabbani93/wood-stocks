@@ -24,9 +24,9 @@ const Login = () => {
 				// const user = result.user;
 				toast.success('Login Successfull', {
 					style: {
-						border: '1px solid #6C4AB6',
+						border: '1px solid #D94A38',
 						padding: '16px',
-						color: '#6C4AB6',
+						color: '#D94A38',
 						fontWeight: 'bold',
 					},
 				});
@@ -39,9 +39,9 @@ const Login = () => {
 				const cutMessage = message.split('/')[1].split(')')[0];
 				toast.error(`Opps! ${cutMessage}`, {
 					style: {
-						border: '1px solid #6C4AB6',
+						border: '1px solid #D94A38',
 						padding: '16px',
-						color: '#6C4AB6',
+						color: '#D94A38',
 						fontWeight: 'bold',
 					},
 				});
@@ -54,9 +54,9 @@ const Login = () => {
 				// const user = result.user;
 				toast.success('Google Login Successfull', {
 					style: {
-						border: '1px solid #6C4AB6',
+						border: '1px solid #D94A38',
 						padding: '16px',
-						color: '#6C4AB6',
+						color: '#D94A38',
 						fontWeight: 'bold',
 					},
 				});
@@ -70,9 +70,9 @@ const Login = () => {
 				const cutMessage = message.split('/')[1].split(')')[0];
 				toast.error(`Opps! ${cutMessage}`, {
 					style: {
-						border: '1px solid #6C4AB6',
+						border: '1px solid #D94A38',
 						padding: '16px',
-						color: '#6C4AB6',
+						color: '#D94A38',
 						fontWeight: 'bold',
 					},
 				});

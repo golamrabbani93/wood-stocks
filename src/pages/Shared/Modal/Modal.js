@@ -11,18 +11,18 @@ const Modal = ({product}) => {
 		if (!buyProduct.phone && !buyProduct.location) {
 			toast.error(`Opps! Plaese Input Phone And Meeting Location`, {
 				style: {
-					border: '1px solid #6C4AB6',
+					border: '1px solid #D94A38',
 					padding: '16px',
-					color: '#6C4AB6',
+					color: '#D94A38',
 					fontWeight: 'bold',
 				},
 			});
 		} else {
 			toast.success('Order Confirmd', {
 				style: {
-					border: '1px solid #6C4AB6',
+					border: '1px solid #D94A38',
 					padding: '16px',
-					color: '#6C4AB6',
+					color: '#D94A38',
 					fontWeight: 'bold',
 				},
 			});
@@ -39,7 +39,10 @@ const Modal = ({product}) => {
 		<div>
 			<input type="checkbox" id="by-product" className="modal-toggle" />
 			<div className="modal modal-bottom sm:modal-middle">
-				<form className="modal-box">
+				<form className="modal-box relative">
+					<label htmlFor="by-product" className="btn btn-sm btn-circle absolute right-2 top-2 ">
+						✕
+					</label>
 					<h3 className="font-bold text-2xl mb-1">{name}</h3>
 					<p className="text-2xl text-primary mb-3">
 						Price : <span className="font-bold"> ${price}</span>{' '}
