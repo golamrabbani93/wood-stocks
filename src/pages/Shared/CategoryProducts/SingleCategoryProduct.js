@@ -1,7 +1,9 @@
 import React from 'react';
+import Modal from '../Modal/Modal';
 
 const SingleCategoryProduct = ({product}) => {
 	const {name, price, og_price, seller_name, uses, img, location} = product;
+
 	return (
 		<div className="card card-compact w-96 bg-base-100 shadow-xl">
 			<figure className="rounded-3xl">
@@ -25,9 +27,13 @@ const SingleCategoryProduct = ({product}) => {
 					</p>
 				</div>
 				<div className="card-actions justify-end">
-					<button className="btn btn-primary">Buy Now</button>
+					<label htmlFor="by-product" className="btn  btn-primary">
+						Buy Now
+					</label>
 				</div>
 			</div>
+
+			<Modal product={product}></Modal>
 		</div>
 	);
 };
