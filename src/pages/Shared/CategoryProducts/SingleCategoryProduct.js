@@ -2,8 +2,23 @@ import React from 'react';
 import Modal from '../Modal/Modal';
 
 const SingleCategoryProduct = ({product}) => {
+	// const [userData, setUserData] = useState([]);
 	const {name, price, og_price, seller_name, uses, img, location} = product;
-
+	const handleProductStatus = (customer) => {
+		console.log(customer);
+		const soldItem = {
+			name,
+			price,
+			og_price,
+			seller_name,
+			uses,
+			img,
+			location,
+			meetLocation: customer.loaction,
+			number: customer.phone,
+		};
+		console.log('🚀🚀: handleProductStatus -> soldItem', soldItem);
+	};
 	return (
 		<div className="card card-compact w-96 bg-base-100 shadow-xl">
 			<figure className="rounded-3xl">
@@ -33,7 +48,7 @@ const SingleCategoryProduct = ({product}) => {
 				</div>
 			</div>
 
-			<Modal product={product}></Modal>
+			<Modal handleProductStatus={handleProductStatus} product={product}></Modal>
 		</div>
 	);
 };

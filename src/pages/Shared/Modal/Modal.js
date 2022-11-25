@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react';
 import toast from 'react-hot-toast';
 import {AuthContext} from '../../../Context/AuthProvider';
 
-const Modal = ({product}) => {
+const Modal = ({product, handleProductStatus}) => {
 	const {name, price, og_price} = product;
 	const {user} = useContext(AuthContext);
 	const [buyProduct, setBuyProduct] = useState({});
@@ -18,6 +18,7 @@ const Modal = ({product}) => {
 				},
 			});
 		} else {
+			handleProductStatus(buyProduct);
 			toast.success('Order Confirmd', {
 				style: {
 					border: '1px solid #D94A38',
@@ -35,6 +36,9 @@ const Modal = ({product}) => {
 		newUser[field] = value;
 		setBuyProduct(newUser);
 	};
+	// const handleAddProductDatabase = () => {
+
+	// };
 	return (
 		<div>
 			<input type="checkbox" id="by-product" className="modal-toggle" />
