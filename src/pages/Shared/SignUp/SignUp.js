@@ -17,55 +17,67 @@ const SignUp = () => {
 	//*Create user With EEail and Password
 	const handleSignUp = (data) => {
 		const {name, email, password} = data;
-		console.log('🚀🚀: handleSignUp -> data', data);
-		// createUser(email, password)
-		// 	.then((result) => {
-		// 		handleUpdate(name);
-		// 		toast.success('Sign Up Successfull', {
-		// 			style: {
-		// 				border: '1px solid #6C4AB6',
-		// 				padding: '16px',
-		// 				color: '#6C4AB6',
-		// 				fontWeight: 'bold',
-		// 			},
-		// 		});
-		// 		navigate('/login');
-		// 		reset();
-		// 	})
-		// 	.catch((err) => {
-		// 		console.error(err);
-		// 		const message = err.message;
-		// 		const cutMessage = message.split('/')[1].split(')')[0];
-		// 		toast.error(`Opps! ${cutMessage}`, {
-		// 			style: {
-		// 				border: '1px solid #6C4AB6',
-		// 				padding: '16px',
-		// 				color: '#6C4AB6',
-		// 				fontWeight: 'bold',
-		// 			},
-		// 		});
-		// 	});
+		createUser(email, password)
+			.then((result) => {
+				handleUpdate(name);
+				console.log('🚀🚀: handleSignUp -> data', data);
+				fetch(`http://localhost:5000/user`, {
+					method: 'POST',
+					headers: {
+						'content-type': 'application/json',
+					},
+					body: JSON.stringify(data),
+				})
+					.then((res) => res.json())
+					.then((data) => {
+						if (data.acknowledged) {
+							toast.success('Sign Up Successfull', {
+								style: {
+									border: '1px solid #6C4AB6',
+									padding: '16px',
+									color: '#6C4AB6',
+									fontWeight: 'bold',
+								},
+							});
+						}
+					});
+				navigate('/login');
+				reset();
+			})
+			.catch((err) => {
+				console.error(err);
+				const message = err.message;
+				const cutMessage = message.split('/')[1].split(')')[0];
+				toast.error(`Opps! ${cutMessage}`, {
+					style: {
+						border: '1px solid #6C4AB6',
+						padding: '16px',
+						color: '#6C4AB6',
+						fontWeight: 'bold',
+					},
+				});
+			});
 	};
 	//*handle update name
-	// const handleUpdate = (name) => {
-	// 	const profile = {
-	// 		displayName: name,
-	// 	};
-	// 	userUpdate(profile)
-	// 		.then((result) => {})
-	// 		.catch((err) => {
-	// 			const message = err.message;
-	// 			const cutMessage = message.split('/')[1].split(')')[0];
-	// 			toast.error(`Opps! ${cutMessage}`, {
-	// 				style: {
-	// 					border: '1px solid #6C4AB6',
-	// 					padding: '16px',
-	// 					color: '#6C4AB6',
-	// 					fontWeight: 'bold',
-	// 				},
-	// 			});
-	// 		});
-	// };
+	const handleUpdate = (name) => {
+		const profile = {
+			displayName: name,
+		};
+		userUpdate(profile)
+			.then((result) => {})
+			.catch((err) => {
+				const message = err.message;
+				const cutMessage = message.split('/')[1].split(')')[0];
+				toast.error(`Opps! ${cutMessage}`, {
+					style: {
+						border: '1px solid #6C4AB6',
+						padding: '16px',
+						color: '#6C4AB6',
+						fontWeight: 'bold',
+					},
+				});
+			});
+	};
 	const handleGoogleLogin = () => {
 		loginGoogle()
 			.then((result) => {
