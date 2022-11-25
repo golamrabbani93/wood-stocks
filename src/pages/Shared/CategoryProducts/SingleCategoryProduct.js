@@ -1,39 +1,8 @@
-import React, {useContext} from 'react';
-import {AuthContext} from '../../../Context/AuthProvider';
-import Modal from '../Modal/Modal';
+import React from 'react';
 
-const SingleCategoryProduct = ({product}) => {
-	// const [userData, setUserData] = useState([]);
-	const {user} = useContext(AuthContext);
+const SingleCategoryProduct = ({product, setBuyProduct}) => {
 	const {name, price, og_price, seller_name, uses, img, location} = product;
-	const handleProductStatus = (customer) => {
-		const soldItem = {
-			name,
-			price,
-			og_price,
-			seller_name,
-			uses,
-			img,
-			location,
-			meetLocation: customer.loaction,
-			number: customer.phone,
-			email: user?.email,
-			customerName: user?.displayName,
-		};
 
-		console.log('🚀🚀: handleProductStatus -> soldItem', soldItem);
-		fetch('http://localhost:5000/soldproduct', {
-			method: 'POST',
-			headers: {
-				'content-Type': 'application/json',
-			},
-			body: JSON.stringify(soldItem),
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				console.log(data);
-			});
-	};
 	return (
 		<div className="card card-compact w-96 bg-base-100 shadow-xl">
 			<figure className="rounded-3xl">
@@ -57,13 +26,15 @@ const SingleCategoryProduct = ({product}) => {
 					</p>
 				</div>
 				<div className="card-actions justify-end">
-					<label htmlFor="by-product" className="btn  btn-primary">
+					<label
+						onClick={() => setBuyProduct(product)}
+						htmlFor="by-product"
+						className="btn  btn-primary"
+					>
 						Buy Now
 					</label>
 				</div>
 			</div>
-
-			<Modal handleProductStatus={handleProductStatus} product={product}></Modal>
 		</div>
 	);
 };

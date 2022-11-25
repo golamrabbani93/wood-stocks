@@ -1,12 +1,14 @@
 import {useQuery} from '@tanstack/react-query';
-import React from 'react';
+import React, {useState} from 'react';
 import {useParams} from 'react-router-dom';
 import UseTitle from '../../../hooks/UseTitle';
 import Loader from '../Loader/Loader';
+import Modal from '../Modal/Modal';
 import SingleCategoryProduct from './SingleCategoryProduct';
 
 const CategoryProducts = () => {
 	UseTitle(`Products | Woods Stocks`);
+	const [buyProduct, setBuyProduct] = useState(null);
 	const {category_id} = useParams();
 	const {data: products = [], isLoading} = useQuery({
 		queryKey: ['products', category_id],
@@ -24,9 +26,14 @@ const CategoryProducts = () => {
 			<h2 className="text-primary text-4xl font-semibold uppercase">{products[0].category_name}</h2>
 			<div className=" mt-10">
 				{products.map((product) => (
-					<SingleCategoryProduct key={product._id} product={product}></SingleCategoryProduct>
+					<SingleCategoryProduct
+						setBuyProduct={setBuyProduct}
+						key={product._id}
+						product={product}
+					></SingleCategoryProduct>
 				))}
 			</div>
+			{buyProduct && <Modal product={buyProduct}></Modal>}
 		</div>
 	);
 };

@@ -2,8 +2,8 @@ import React, {useContext, useState} from 'react';
 import toast from 'react-hot-toast';
 import {AuthContext} from '../../../Context/AuthProvider';
 
-const Modal = ({product, handleProductStatus}) => {
-	const {name, price, og_price} = product;
+const Modal = ({product}) => {
+	const {name, price, og_price, seller_name, uses, img, location} = product;
 	const {user} = useContext(AuthContext);
 	const [buyProduct, setBuyProduct] = useState({});
 
@@ -36,9 +36,33 @@ const Modal = ({product, handleProductStatus}) => {
 		newUser[field] = value;
 		setBuyProduct(newUser);
 	};
-	// const handleAddProductDatabase = () => {
 
-	// };
+	const handleProductStatus = (customer) => {
+		const soldItem = {
+			name,
+			price,
+			og_price,
+			seller_name,
+			uses,
+			img,
+			location,
+			meetLocation: customer.loaction,
+			number: customer.phone,
+			email: user?.email,
+			customerName: user?.displayName,
+		};
+		fetch('http://localhost:5000/soldproduct', {
+			method: 'POST',
+			headers: {
+				'content-Type': 'application/json',
+			},
+			body: JSON.stringify(soldItem),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+			});
+	};
 	return (
 		<div>
 			<input type="checkbox" id="by-product" className="modal-toggle" />
