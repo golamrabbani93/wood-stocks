@@ -44,6 +44,7 @@ const AuthProvider = ({children}) => {
 	};
 	//*google sign in or sign up
 	const loginGoogle = () => {
+		setLoader(true);
 		return signInWithPopup(auth, googleProvider);
 	};
 	//*User Sign Out

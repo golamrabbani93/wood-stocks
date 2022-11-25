@@ -1,18 +1,20 @@
 import React, {useContext} from 'react';
 import {useForm} from 'react-hook-form';
 import toast from 'react-hot-toast';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../../Context/AuthProvider';
 import UseTitle from '../../../hooks/UseTitle';
 const SignUp = () => {
 	UseTitle('Signup | Woods Stocks');
-	const {createUser, userUpdate} = useContext(AuthContext);
+	const navigate = useNavigate();
+	const {createUser, userUpdate, loginGoogle} = useContext(AuthContext);
 	const {
 		register,
 		handleSubmit,
 		formState: {errors},
 		reset,
 	} = useForm();
+	//*Create user With EEail and Password
 	const handleSignUp = (data) => {
 		const {name, email, password} = data;
 		createUser(email, password)
@@ -26,6 +28,7 @@ const SignUp = () => {
 						fontWeight: 'bold',
 					},
 				});
+				navigate('/login');
 				reset();
 			})
 			.catch((err) => {
@@ -50,6 +53,34 @@ const SignUp = () => {
 		userUpdate(profile)
 			.then((result) => {})
 			.catch((err) => {
+				const message = err.message;
+				const cutMessage = message.split('/')[1].split(')')[0];
+				toast.error(`Opps! ${cutMessage}`, {
+					style: {
+						border: '1px solid #6C4AB6',
+						padding: '16px',
+						color: '#6C4AB6',
+						fontWeight: 'bold',
+					},
+				});
+			});
+	};
+	const handleGoogleLogin = () => {
+		loginGoogle()
+			.then((result) => {
+				// const user = result.user;
+				toast.success('Google Login Successfull', {
+					style: {
+						border: '1px solid #6C4AB6',
+						padding: '16px',
+						color: '#6C4AB6',
+						fontWeight: 'bold',
+					},
+				});
+				navigate('/');
+			})
+			.catch((err) => {
+				console.error(err);
 				const message = err.message;
 				const cutMessage = message.split('/')[1].split(')')[0];
 				toast.error(`Opps! ${cutMessage}`, {
@@ -130,7 +161,10 @@ const SignUp = () => {
 					</Link>
 				</p>
 				<div className="divider">OR</div>
-				<button className="btn btn-outline btn-primary mx-auto h-full flex justify-center items-center">
+				<button
+					onClick={handleGoogleLogin}
+					className="btn btn-outline btn-primary mx-auto h-full flex justify-center items-center"
+				>
 					<img
 						src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1200px-Google_%22G%22_Logo.svg.png"
 						alt=""
