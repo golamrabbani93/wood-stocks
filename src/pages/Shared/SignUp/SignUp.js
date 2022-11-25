@@ -20,7 +20,6 @@ const SignUp = () => {
 		createUser(email, password)
 			.then((result) => {
 				handleUpdate(name);
-				console.log('🚀🚀: handleSignUp -> data', data);
 				fetch(`http://localhost:5000/user`, {
 					method: 'POST',
 					headers: {
@@ -81,15 +80,32 @@ const SignUp = () => {
 	const handleGoogleLogin = () => {
 		loginGoogle()
 			.then((result) => {
-				// const user = result.user;
-				toast.success('Google Login Successfull', {
-					style: {
-						border: '1px solid #6C4AB6',
-						padding: '16px',
-						color: '#6C4AB6',
-						fontWeight: 'bold',
+				const user = result.user;
+				const userinfo = {
+					name: user.displayName,
+					email: user.email,
+					role: 'Buyer',
+				};
+				fetch(`http://localhost:5000/user`, {
+					method: 'POST',
+					headers: {
+						'content-type': 'application/json',
 					},
-				});
+					body: JSON.stringify(userinfo),
+				})
+					.then((res) => res.json())
+					.then((data) => {
+						if (data.acknowledged) {
+							toast.success('Google Login Successfull', {
+								style: {
+									border: '1px solid #6C4AB6',
+									padding: '16px',
+									color: '#6C4AB6',
+									fontWeight: 'bold',
+								},
+							});
+						}
+					});
 				navigate('/');
 			})
 			.catch((err) => {
