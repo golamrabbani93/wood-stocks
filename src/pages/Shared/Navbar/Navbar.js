@@ -92,14 +92,11 @@ const Navbar = () => {
 							>
 								<li className="font-bold text-center">{user?.displayName}</li>
 								<li>
-									<Link className="justify-between">
-										Profile
-										<span className="badge">New</span>
+									<Link to={'/dashboard'} className="justify-between">
+										DashBoard
 									</Link>
 								</li>
-								<li>
-									<Link>Settings</Link>
-								</li>
+
 								<li>
 									<button onClick={userSignOut}>Logout</button>
 								</li>
