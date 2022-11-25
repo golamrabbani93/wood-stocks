@@ -1,7 +1,7 @@
 import React from 'react';
-import {Outlet} from 'react-router-dom';
+import {NavLink, Outlet} from 'react-router-dom';
 import Navbar from '../../pages/Shared/Navbar/Navbar';
-
+import './DashboardLayout.css';
 const DashboardLayout = () => {
 	return (
 		<div>
@@ -17,12 +17,17 @@ const DashboardLayout = () => {
 				</div>
 				<div className="drawer-side  mr-3">
 					<label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-					<ul className="menu p-4 w-80 bg-base-100 text-base-content border border-primary rounded-xl">
-						<li>
-							<a>Sidebar Item 1</a>
+					<ul className="menu p-4 w-80 bg-base-100 text-base-content border border-primary rounded-xl text-left ">
+						<li className="mb-3">
+							<NavLink to={'/dashboard/myorders'} end>
+								My Orders
+							</NavLink>
 						</li>
-						<li>
-							<a>Sidebar Item 2</a>
+						<li className="mb-3">
+							<NavLink to={'/dashboard/myproducts'}>My Products</NavLink>
+						</li>
+						<li className="mb-3">
+							<NavLink to={'/dashboard/addproduct'}>My Products</NavLink>
 						</li>
 					</ul>
 				</div>
