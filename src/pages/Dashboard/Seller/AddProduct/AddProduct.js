@@ -24,6 +24,7 @@ const AddProduct = () => {
 			category_id: parseInt(data.category),
 			productStatus: 'available',
 			phone: data.phone,
+			location: data.location,
 			condition: data.condition,
 			date: localDateTime,
 		};
@@ -52,7 +53,7 @@ const AddProduct = () => {
 	return (
 		<div className="w-full">
 			<div className="p-7 pt-3">
-				<h2 className="text-left text-primary uppercase text-3xl font-bold">Add Prodcut</h2>
+				<h2 className="text-left text-primary uppercase text-3xl font-bold">Add Product</h2>
 				<form onSubmit={handleSubmit(handleProduct)}>
 					<div className="grid lg:grid-cols-3 gap-5 md:w-[900px]">
 						<div className="left-side">
