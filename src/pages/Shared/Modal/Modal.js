@@ -10,7 +10,6 @@ const Modal = ({product, setBuyProduct}) => {
 	const handlBuyProduct = (e) => {
 		e.preventDefault();
 		const form = e.target;
-		console.log('🚀🚀: handlBuyProduct -> form', form);
 
 		if (!productData.phone && !productData.location) {
 			toast.error(`Opps! Plaese Input Phone And Meeting Location`, {
@@ -51,8 +50,7 @@ const Modal = ({product, setBuyProduct}) => {
 			email: user?.email,
 			customerName: user?.displayName,
 		};
-		console.log(soldItem);
-		fetch('http://localhost:5000/soldproduct', {
+		fetch('http://localhost:5000/orders', {
 			method: 'POST',
 			headers: {
 				'content-Type': 'application/json',
