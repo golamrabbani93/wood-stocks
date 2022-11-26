@@ -29,10 +29,10 @@ const DashboardLayout = () => {
 							<NavLink to={'/dashboard/addproduct'}>Add Product</NavLink>
 						</li>
 						<li className="mb-3">
-							<NavLink to={'/dashboard/users'}>All User</NavLink>
+							<NavLink to={'/dashboard/buyers'}>All Buyers</NavLink>
 						</li>
 						<li className="mb-3">
-							<NavLink to={'/dashboard/seller'}>All Seller</NavLink>
+							<NavLink to={'/dashboard/sellers'}>All Seller</NavLink>
 						</li>
 					</ul>
 				</div>
