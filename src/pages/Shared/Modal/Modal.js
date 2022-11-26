@@ -2,13 +2,17 @@ import React, {useContext, useState} from 'react';
 import toast from 'react-hot-toast';
 import {AuthContext} from '../../../Context/AuthProvider';
 
-const Modal = ({product}) => {
-	const {name, price, og_price, seller_name, uses, img, location} = product;
+const Modal = ({product, setBuyProduct}) => {
+	const {_id, name, price, og_price, seller_name, uses, img, location} = product;
 	const {user} = useContext(AuthContext);
-	const [buyProduct, setBuyProduct] = useState({});
+	const [productData, SetProductData] = useState({});
 
-	const handlBuyProduct = () => {
-		if (!buyProduct.phone && !buyProduct.location) {
+	const handlBuyProduct = (e) => {
+		e.preventDefault();
+		const form = e.target;
+		console.log('🚀🚀: handlBuyProduct -> form', form);
+
+		if (!productData.phone && !productData.location) {
 			toast.error(`Opps! Plaese Input Phone And Meeting Location`, {
 				style: {
 					border: '1px solid #D94A38',
@@ -18,27 +22,23 @@ const Modal = ({product}) => {
 				},
 			});
 		} else {
-			handleProductStatus(buyProduct);
-			toast.success('Order Confirmd', {
-				style: {
-					border: '1px solid #D94A38',
-					padding: '16px',
-					color: '#D94A38',
-					fontWeight: 'bold',
-				},
-			});
+			handleProductStatus(productData);
+			updateProduct(_id);
+			setBuyProduct(null);
 		}
+		form.reset();
 	};
 	const inputData = (e) => {
 		let value = e.target.value;
 		const field = e.target.name;
-		const newUser = {...buyProduct};
+		const newUser = {...productData};
 		newUser[field] = value;
-		setBuyProduct(newUser);
+		SetProductData(newUser);
 	};
 
 	const handleProductStatus = (customer) => {
 		const soldItem = {
+			id: _id,
 			name,
 			price,
 			og_price,
@@ -51,6 +51,7 @@ const Modal = ({product}) => {
 			email: user?.email,
 			customerName: user?.displayName,
 		};
+		console.log(soldItem);
 		fetch('http://localhost:5000/soldproduct', {
 			method: 'POST',
 			headers: {
@@ -60,14 +61,41 @@ const Modal = ({product}) => {
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data);
+				if (data.acknowledged) {
+					toast.success('Order Confirmd', {
+						style: {
+							border: '1px solid #D94A38',
+							padding: '16px',
+							color: '#D94A38',
+							fontWeight: 'bold',
+						},
+					});
+				}
+			});
+	};
+
+	const updateProduct = (_id) => {
+		const status = {
+			productStatus: 'Sold',
+		};
+		fetch(`http://localhost:5000/updateproduct/${_id}`, {
+			method: 'PUT',
+			headers: {
+				'content-type': 'application/json',
+			},
+			body: JSON.stringify(status),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.modifiedCount > 0) {
+				}
 			});
 	};
 	return (
 		<div>
 			<input type="checkbox" id="by-product" className="modal-toggle" />
 			<div className="modal modal-bottom sm:modal-middle">
-				<form className="modal-box relative">
+				<form onSubmit={handlBuyProduct} className="modal-box relative">
 					<label htmlFor="by-product" className="btn btn-sm btn-circle absolute right-2 top-2 ">
 						✕
 					</label>
@@ -104,14 +132,9 @@ const Modal = ({product}) => {
 					/>
 
 					<div className="modal-action">
-						<label
-							type="submmit"
-							onClick={handlBuyProduct}
-							htmlFor="by-product"
-							className="btn btn-outline btn-primary"
-						>
+						<button type="submit" htmlFor="by-product" className="btn btn-outline btn-primary">
 							Buy Now
-						</label>
+						</button>
 					</div>
 				</form>
 			</div>

@@ -24,7 +24,7 @@ const CategoryProducts = () => {
 	return (
 		<div className="mt-12 container mx-auto">
 			<h2 className="text-primary text-4xl font-semibold uppercase">{products[0].category_name}</h2>
-			<div className=" mt-10">
+			<div className="grid md:grid-cols-2 lg:grid-cols-3 mt-10">
 				{products.map((product) => (
 					<SingleCategoryProduct
 						setBuyProduct={setBuyProduct}
@@ -33,7 +33,7 @@ const CategoryProducts = () => {
 					></SingleCategoryProduct>
 				))}
 			</div>
-			{buyProduct && <Modal product={buyProduct}></Modal>}
+			{buyProduct && <Modal setBuyProduct={setBuyProduct} product={buyProduct}></Modal>}
 		</div>
 	);
 };
