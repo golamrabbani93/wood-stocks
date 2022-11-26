@@ -28,6 +28,9 @@ const DashboardLayout = () => {
 						<li className="mb-3">
 							<NavLink to={'/dashboard/addproduct'}>Add Product</NavLink>
 						</li>
+						<li className="mb-3">
+							<NavLink to={'/dashboard/users'}>All User</NavLink>
+						</li>
 					</ul>
 				</div>
 			</div>
