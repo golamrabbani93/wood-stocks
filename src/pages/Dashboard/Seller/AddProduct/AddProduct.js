@@ -1,5 +1,6 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {useForm} from 'react-hook-form';
+import toast from 'react-hot-toast';
 import {AuthContext} from '../../../../Context/AuthProvider';
 
 const AddProduct = () => {
@@ -13,7 +14,6 @@ const AddProduct = () => {
 	const handleProduct = (data) => {
 		var isodate = new Date();
 		var localDateTime = isodate.toLocaleDateString() + ' ' + isodate.toLocaleTimeString();
-
 		const productDetails = {
 			img: data.img,
 			name: data.name,
@@ -27,7 +27,27 @@ const AddProduct = () => {
 			condition: data.condition,
 			date: localDateTime,
 		};
-		console.log(productDetails);
+		fetch('http://localhost:5000/products', {
+			method: 'POST',
+			headers: {
+				'content-Type': 'application/json',
+			},
+			body: JSON.stringify(productDetails),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.acknowledged) {
+					toast.success('Order Confirmd', {
+						style: {
+							border: '1px solid #D94A38',
+							padding: '16px',
+							color: '#D94A38',
+							fontWeight: 'bold',
+						},
+					});
+				}
+				reset();
+			});
 	};
 	return (
 		<div className="w-full">
