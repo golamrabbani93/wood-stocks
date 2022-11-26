@@ -15,11 +15,13 @@ const Login = () => {
 	const {LoginUser, loginGoogle} = useContext(AuthContext);
 	const [userEmail, setUserEmail] = useState('');
 	UseTitle('Login | Woods Stocks');
-	UseToken(userEmail);
+	const [token] = UseToken(userEmail);
 	const navigate = useNavigate();
 	const location = useLocation();
 	const from = location.state?.from?.pathname || '/';
-
+	if (token) {
+		navigate(from, {replace: true});
+	}
 	//*Login With Email and Password
 	const handleLogin = (data) => {
 		const {email, password} = data;

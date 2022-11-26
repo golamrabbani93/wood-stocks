@@ -5,10 +5,13 @@ const UseUserRole = (email) => {
 	const [isAdminLoading, setIsAdminLoading] = useState(true);
 	useEffect(() => {
 		if (email) {
-			fetch(`http://localhost:5000/users/userrole/${email}`)
+			fetch(`http://localhost:5000/users/userrole/${email}`, {
+				headers: {
+					authorization: `bearer ${localStorage.getItem('token')}`,
+				},
+			})
 				.then((res) => res.json())
 				.then((data) => {
-					console.log(data);
 					setUserRole(data);
 					setIsAdminLoading(false);
 				});

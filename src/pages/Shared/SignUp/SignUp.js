@@ -1,9 +1,10 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import toast from 'react-hot-toast';
 import {Link, useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../../Context/AuthProvider';
 import UseTitle from '../../../hooks/UseTitle';
+import UseToken from '../../../hooks/UseToken';
 const SignUp = () => {
 	UseTitle('Signup | Woods Stocks');
 	const navigate = useNavigate();
@@ -14,6 +15,13 @@ const SignUp = () => {
 		formState: {errors},
 		reset,
 	} = useForm();
+	const [userEmail, setUserEmail] = useState('');
+	const [token] = UseToken(userEmail);
+	if (token) {
+		if (token) {
+			navigate('/login');
+		}
+	}
 	//*Create user With EEail and Password
 	const handleSignUp = (data) => {
 		const {name, email, password} = data;
@@ -28,8 +36,8 @@ const SignUp = () => {
 					body: JSON.stringify(data),
 				})
 					.then((res) => res.json())
-					.then((data) => {
-						if (data.acknowledged) {
+					.then((result) => {
+						if (result.acknowledged) {
 							toast.success('Sign Up Successfull', {
 								style: {
 									border: '1px solid #D94A38',
@@ -40,7 +48,8 @@ const SignUp = () => {
 							});
 						}
 					});
-				navigate('/login');
+
+				setUserEmail(data.email);
 				reset();
 			})
 			.catch((err) => {

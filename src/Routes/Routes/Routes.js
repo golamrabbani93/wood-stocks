@@ -1,7 +1,6 @@
 import {createBrowserRouter} from 'react-router-dom';
 import DashboardLayout from '../../Layouts/DashboardLayout/DashboardLayout';
 import Main from '../../Layouts/Main/Main';
-import AllUsers from '../../pages/Dashboard/Admin/AllUsers/AllUsers';
 import Buyer from '../../pages/Dashboard/Admin/Buyer/Buyer';
 import Seller from '../../pages/Dashboard/Admin/Seller/Seller';
 import MyOrders from '../../pages/Dashboard/Buyer/MyOrders/MyOrders';
