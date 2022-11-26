@@ -1,27 +1,30 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import toast from 'react-hot-toast';
 import {Link, useLocation, useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../../Context/AuthProvider';
 import UseTitle from '../../../hooks/UseTitle';
+import UseToken from '../../../hooks/UseToken';
 const Login = () => {
-	UseTitle('Login | Woods Stocks');
-	const {LoginUser, loginGoogle} = useContext(AuthContext);
 	const {
 		register,
 		handleSubmit,
 		formState: {errors},
 		reset,
 	} = useForm();
+	const {LoginUser, loginGoogle} = useContext(AuthContext);
+	const [userEmail, setUserEmail] = useState('');
+	UseTitle('Login | Woods Stocks');
+	UseToken(userEmail);
 	const navigate = useNavigate();
 	const location = useLocation();
 	const from = location.state?.from?.pathname || '/';
+
 	//*Login With Email and Password
-	const handleSLogin = (data) => {
+	const handleLogin = (data) => {
 		const {email, password} = data;
 		LoginUser(email, password)
 			.then((result) => {
-				// const user = result.user;
 				toast.success('Login Successfull', {
 					style: {
 						border: '1px solid #D94A38',
@@ -30,7 +33,8 @@ const Login = () => {
 						fontWeight: 'bold',
 					},
 				});
-				navigate(from, {replace: true});
+				setUserEmail(data.email);
+				// navigate(from, {replace: true});
 				reset();
 			})
 			.catch((err) => {
@@ -82,7 +86,7 @@ const Login = () => {
 		<div className=" flex justify-center items-center text-left">
 			<div className="w-96 p-7 pt-3">
 				<h2 className="text-2xl text-center font-bold">Login</h2>
-				<form onSubmit={handleSubmit(handleSLogin)}>
+				<form onSubmit={handleSubmit(handleLogin)}>
 					<div className="form-control w-full max-w-xs"></div>
 					<div className="form-control w-full max-w-xs">
 						<label className="label">
