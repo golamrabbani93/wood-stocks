@@ -26,7 +26,7 @@ const DashboardLayout = () => {
 							<NavLink to={'/dashboard/myproducts'}>My Products</NavLink>
 						</li>
 						<li className="mb-3">
-							<NavLink to={'/dashboard/addproduct'}>My Products</NavLink>
+							<NavLink to={'/dashboard/addproduct'}>Add Product</NavLink>
 						</li>
 					</ul>
 				</div>
