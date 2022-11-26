@@ -2,6 +2,7 @@ import {useQuery} from '@tanstack/react-query';
 import React, {useContext} from 'react';
 import {AuthContext} from '../../../../Context/AuthProvider';
 import Loader from '../../../Shared/Loader/Loader';
+import SingleProduct from './SingleProduct';
 
 const MyProducts = () => {
 	const {user} = useContext(AuthContext);
@@ -21,7 +22,6 @@ const MyProducts = () => {
 		<div>
 			<h2 className="text-left text-primary uppercase text-3xl font-bold">My Products</h2>
 			<div className="text-left">
-				<h2 className="text-left text-primary uppercase text-3xl font-bold">my order</h2>
 				<div className="order-container">
 					<div className="overflow-x-auto w-full">
 						<table className="table w-full">
@@ -34,8 +34,8 @@ const MyProducts = () => {
 								</tr>
 							</thead>
 							<tbody>
-								{myProducts.map((order) => (
-									<h2>product</h2>
+								{myProducts.map((pd) => (
+									<SingleProduct key={pd._id} product={pd}></SingleProduct>
 								))}
 							</tbody>
 						</table>
