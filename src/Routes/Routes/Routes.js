@@ -8,6 +8,7 @@ import Dashboard from '../../pages/Dashboard/Dashboard';
 import AddProduct from '../../pages/Dashboard/Seller/AddProduct/AddProduct';
 import MyProducts from '../../pages/Dashboard/Seller/MyProducts/MyProducts';
 import Home from '../../pages/Home/Home/Home/Home';
+import Page404 from '../../pages/Shared/404page/Page404';
 import CategoryProducts from '../../pages/Shared/CategoryProducts/CategoryProducts';
 import Login from '../../pages/Shared/Login/Login';
 import SignUp from '../../pages/Shared/SignUp/SignUp';
@@ -101,5 +102,9 @@ export const router = createBrowserRouter([
 				),
 			},
 		],
+	},
+	{
+		path: '*',
+		element: <Page404></Page404>,
 	},
 ]);
