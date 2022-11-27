@@ -1,12 +1,17 @@
 import {useQuery} from '@tanstack/react-query';
 import React, {useContext} from 'react';
+import toast from 'react-hot-toast';
 import {AuthContext} from '../../../../Context/AuthProvider';
 import Loader from '../../../Shared/Loader/Loader';
 import SingleUser from '../AllUsers/SingleUser';
 
 const Buyer = () => {
 	const {user} = useContext(AuthContext);
-	const {data: users = [], isLoading} = useQuery({
+	const {
+		data: users = [],
+		isLoading,
+		refetch,
+	} = useQuery({
 		queryKey: ['products'],
 		queryFn: async () => {
 			const res = await fetch(
@@ -21,6 +26,21 @@ const Buyer = () => {
 			return data;
 		},
 	});
+	const handleDeleteBuyer = (deletedUser) => {
+		const deleteBuyer = window.confirm('Are You Sure To Delete Your Review');
+		if (deleteBuyer) {
+			fetch(`http://localhost:5000/users/buyer/${deletedUser._id}?email=${user.email}`, {
+				method: 'DELETE',
+			})
+				.then((res) => res.json())
+				.then((data) => {
+					if (data.deletedCount > 0) {
+						refetch();
+						toast.success(`User ${deletedUser.name} deleted successfully`);
+					}
+				});
+		}
+	};
 	if (isLoading) {
 		return <Loader></Loader>;
 	}
@@ -37,7 +57,12 @@ const Buyer = () => {
 				</thead>
 				<tbody>
 					{users.map((user, i) => (
-						<SingleUser key={user._id} user={user} stage={i}></SingleUser>
+						<SingleUser
+							handleDeleteBuyer={handleDeleteBuyer}
+							key={user._id}
+							user={user}
+							stage={i}
+						></SingleUser>
 					))}
 				</tbody>
 			</table>
