@@ -12,6 +12,7 @@ import CategoryProducts from '../../pages/Shared/CategoryProducts/CategoryProduc
 import Login from '../../pages/Shared/Login/Login';
 import SignUp from '../../pages/Shared/SignUp/SignUp';
 import AdminRoute from '../AdminRoute/AdminRoute';
+import BuyerRoute from '../BuyerRoute/BuyerRoute';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import SellerRoute from '../SellerRoute/SellerRoute';
 
@@ -61,7 +62,11 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: '/dashboard/myorders',
-				element: <MyOrders></MyOrders>,
+				element: (
+					<BuyerRoute>
+						<MyOrders></MyOrders>
+					</BuyerRoute>
+				),
 			},
 			{
 				path: '/dashboard/myproducts',
