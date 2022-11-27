@@ -7,7 +7,9 @@ const SingleUser = ({user, stage, handleDeleteBuyer}) => {
 			<td>{user.name}</td>
 			<td>{user.userRole}</td>
 			<th>
-				<button className="btn btn-primary btn-xs mr-2">Verify</button>
+				{user.userRole === 'Seller' && (
+					<button className="btn btn-primary btn-xs mr-2">Verify</button>
+				)}
 
 				<button
 					onClick={() => handleDeleteBuyer(user)}
