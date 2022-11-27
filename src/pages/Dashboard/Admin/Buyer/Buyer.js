@@ -36,7 +36,14 @@ const Buyer = () => {
 				.then((data) => {
 					if (data.deletedCount > 0) {
 						refetch();
-						toast.success(`User ${deletedUser.name} deleted successfully`);
+						toast.success(`User ${deletedUser.name} deleted successfully`, {
+							style: {
+								border: '1px solid #D94A38',
+								padding: '16px',
+								color: '#D94A38',
+								fontWeight: 'bold',
+							},
+						});
 					}
 				});
 		}
