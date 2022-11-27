@@ -50,7 +50,7 @@ const Modal = ({product, setBuyProduct}) => {
 			email: user?.email,
 			customerName: user?.displayName,
 		};
-		fetch('http://localhost:5000/orders', {
+		fetch('https://sitpad-server.vercel.app/orders', {
 			method: 'POST',
 			headers: {
 				'content-Type': 'application/json',
@@ -76,7 +76,7 @@ const Modal = ({product, setBuyProduct}) => {
 		const status = {
 			productStatus: 'Sold',
 		};
-		fetch(`http://localhost:5000/updateproduct/${_id}`, {
+		fetch(`https://sitpad-server.vercel.app/updateproduct/${_id}`, {
 			method: 'PUT',
 			headers: {
 				'content-type': 'application/json',

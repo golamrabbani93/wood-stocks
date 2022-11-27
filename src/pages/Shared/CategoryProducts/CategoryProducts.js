@@ -13,7 +13,7 @@ const CategoryProducts = () => {
 	const {data: products = [], isLoading} = useQuery({
 		queryKey: ['products', category_id],
 		queryFn: async () => {
-			const res = await fetch(`http://localhost:5000/products/${category_id}`);
+			const res = await fetch(`https://sitpad-server.vercel.app/products/${category_id}`);
 			const data = await res.json();
 			return data;
 		},

@@ -5,7 +5,7 @@ const UseUserRole = (email) => {
 	const [isAdminLoading, setIsAdminLoading] = useState(true);
 	useEffect(() => {
 		if (email) {
-			fetch(`http://localhost:5000/users/userrole/${email}`, {
+			fetch(`https://sitpad-server.vercel.app/users/userrole/${email}`, {
 				headers: {
 					authorization: `bearer ${localStorage.getItem('token')}`,
 				},

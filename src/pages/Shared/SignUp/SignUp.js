@@ -28,7 +28,7 @@ const SignUp = () => {
 		createUser(email, password)
 			.then((result) => {
 				handleUpdate(name);
-				fetch(`http://localhost:5000/user`, {
+				fetch(`https://sitpad-server.vercel.app/user`, {
 					method: 'POST',
 					headers: {
 						'content-type': 'application/json',
@@ -95,7 +95,7 @@ const SignUp = () => {
 					email: user.email,
 					userRole: 'Buyer',
 				};
-				fetch(`http://localhost:5000/user`, {
+				fetch(`https://sitpad-server.vercel.app/user`, {
 					method: 'POST',
 					headers: {
 						'content-type': 'application/json',

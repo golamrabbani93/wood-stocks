@@ -9,7 +9,7 @@ const AllUsers = () => {
 	const {data: users = [], isLoading} = useQuery({
 		queryKey: ['products'],
 		queryFn: async () => {
-			const res = await fetch(`http://localhost:5000/users/?email=${user.email}`, {
+			const res = await fetch(`https://sitpad-server.vercel.app/users/?email=${user.email}`, {
 				headers: {
 					authorization: `bearer ${localStorage.getItem('token')}`,
 				},

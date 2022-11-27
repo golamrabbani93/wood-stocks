@@ -28,7 +28,7 @@ const AddProduct = () => {
 			condition: data.condition,
 			date: localDateTime,
 		};
-		fetch('http://localhost:5000/products', {
+		fetch('https://sitpad-server.vercel.app/products', {
 			method: 'POST',
 			headers: {
 				'content-Type': 'application/json',

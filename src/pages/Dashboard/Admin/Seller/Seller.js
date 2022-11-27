@@ -10,7 +10,7 @@ const Seller = () => {
 		queryKey: ['products'],
 		queryFn: async () => {
 			const res = await fetch(
-				`http://localhost:5000/users/seller/?userRole=Seller&email=${user.email}`,
+				`https://sitpad-server.vercel.app/users/seller/?userRole=Seller&email=${user.email}`,
 				{
 					headers: {
 						authorization: `bearer ${localStorage.getItem('token')}`,
