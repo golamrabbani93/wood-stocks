@@ -26,6 +26,7 @@ const Seller = () => {
 			return data;
 		},
 	});
+	//*delete buyer
 	const handleDeleteBuyer = (deletedUser) => {
 		const deleteBuyer = window.confirm('Are You Sure To Delete Your Review');
 		if (deleteBuyer) {
@@ -40,6 +41,37 @@ const Seller = () => {
 					}
 				});
 		}
+	};
+	//*Seller verify
+	const verifySeller = (data) => {
+		console.log(data);
+		updateUserSeller(data._id);
+		refetch();
+	};
+	const updateUserSeller = (_id) => {
+		const seller = {
+			seller: 'verified',
+		};
+		fetch(`http://localhost:5000/verify/seller/${_id}`, {
+			method: 'PUT',
+			headers: {
+				'content-type': 'application/json',
+			},
+			body: JSON.stringify(seller),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.modifiedCount > 0) {
+					toast.success('Seller Verified Successfull', {
+						style: {
+							border: '1px solid #D94A38',
+							padding: '16px',
+							color: '#D94A38',
+							fontWeight: 'bold',
+						},
+					});
+				}
+			});
 	};
 	if (isLoading) {
 		return <Loader></Loader>;
@@ -58,6 +90,7 @@ const Seller = () => {
 				<tbody>
 					{users.map((user, i) => (
 						<SingleUser
+							verifySeller={verifySeller}
 							handleDeleteBuyer={handleDeleteBuyer}
 							key={user._id}
 							user={user}
