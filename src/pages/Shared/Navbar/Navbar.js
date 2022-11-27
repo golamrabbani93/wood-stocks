@@ -10,8 +10,11 @@ const Navbar = () => {
 			<NavLink className="mr-7" to={'/'} end>
 				Home
 			</NavLink>
-			<NavLink className="mr-7" to={'/about'}>
-				About
+			<NavLink className="mr-7" to={'/blog'}>
+				Blog
+			</NavLink>
+			<NavLink className="mr-7" to={'/dashboard'}>
+				DashBoard
 			</NavLink>
 		</>
 	);
