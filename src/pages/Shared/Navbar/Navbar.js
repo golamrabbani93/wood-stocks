@@ -1,11 +1,10 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {Link, NavLink} from 'react-router-dom';
 import {AuthContext} from '../../../Context/AuthProvider';
 import './Navbar.css';
 import {FaUserAlt} from 'react-icons/fa';
 const Navbar = () => {
 	const {user, userSignOut} = useContext(AuthContext);
-	const [menu, sentMenu] = useState(false);
 	const navItems = (
 		<>
 			<NavLink className="mr-7" to={'/'} end>

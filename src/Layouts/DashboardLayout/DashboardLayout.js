@@ -15,9 +15,9 @@ const DashboardLayout = () => {
 				<div className="drawer-content">
 					<Outlet></Outlet>
 				</div>
-				<div className="drawer-side  mr-3">
+				<div className="drawer-side  md:mr-3">
 					<label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-					<ul className="menu p-4 w-80 bg-base-100 text-base-content border border-primary rounded-xl text-left ">
+					<ul className="menu p-4 w-60 md:w-80 bg-base-100 text-base-content border border-primary rounded-xl text-left ">
 						{userRole?.userRole === 'Buyer' ? (
 							<li className="mb-3">
 								<NavLink to={'/dashboard/myorders'} end>

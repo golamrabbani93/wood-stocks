@@ -52,7 +52,7 @@ const AddProduct = () => {
 			});
 	};
 	return (
-		<div className="w-full">
+		<div className="w-full -ml-5 md:-ml-0">
 			<div className="p-7 pt-3">
 				<h2 className="text-left text-primary uppercase text-3xl font-bold">Add Product</h2>
 				<form onSubmit={handleSubmit(handleProduct)}>

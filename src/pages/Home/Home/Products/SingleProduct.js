@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 const SingleProduct = ({category}) => {
 	const {category_id, category_name, img} = category;
 	return (
-		<div className="card w-96 bg-base-100 shadow-xl image-full">
+		<div className="card m-3 md:0 md:w-96 bg-base-100 shadow-xl image-full">
 			<figure>
 				<img src={img} alt="Shoes" />
 			</figure>
