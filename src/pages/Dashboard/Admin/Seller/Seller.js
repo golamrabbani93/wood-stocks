@@ -46,6 +46,7 @@ const Seller = () => {
 	const verifySeller = (data) => {
 		console.log(data);
 		updateUserSeller(data._id);
+		updateProductSeller(data);
 		refetch();
 	};
 	const updateUserSeller = (_id) => {
@@ -70,6 +71,24 @@ const Seller = () => {
 							fontWeight: 'bold',
 						},
 					});
+				}
+			});
+	};
+	//*Seller verify product category
+	const updateProductSeller = (data) => {
+		const seller = {
+			seller: 'verified',
+		};
+		fetch(`http://localhost:5000/verify/category/seller/${data.name}`, {
+			method: 'PUT',
+			headers: {
+				'content-type': 'application/json',
+			},
+			body: JSON.stringify(seller),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.modifiedCount > 0) {
 				}
 			});
 	};
