@@ -30,7 +30,7 @@ const Seller = () => {
 	const handleDeleteBuyer = (deletedUser) => {
 		const deleteBuyer = window.confirm('Are You Sure To Delete Your Review');
 		if (deleteBuyer) {
-			fetch(`http://localhost:5000/users/seller/${deletedUser._id}`, {
+			fetch(`https://sitpad-server.vercel.app/users/seller/${deletedUser._id}`, {
 				method: 'DELETE',
 			})
 				.then((res) => res.json())
@@ -52,7 +52,7 @@ const Seller = () => {
 		const seller = {
 			seller: 'verified',
 		};
-		fetch(`http://localhost:5000/verify/seller/${data._id}`, {
+		fetch(`https://sitpad-server.vercel.app/verify/seller/${data._id}`, {
 			method: 'PUT',
 			headers: {
 				'content-type': 'application/json',
@@ -78,7 +78,7 @@ const Seller = () => {
 		const seller = {
 			seller: 'verified',
 		};
-		fetch(`http://localhost:5000/verify/category/seller/${data.name}`, {
+		fetch(`https://sitpad-server.vercel.app/verify/category/seller/${data.name}`, {
 			method: 'PUT',
 			headers: {
 				'content-type': 'application/json',

@@ -29,7 +29,7 @@ const Buyer = () => {
 	const handleDeleteBuyer = (deletedUser) => {
 		const deleteBuyer = window.confirm('Are You Sure To Delete Your Review');
 		if (deleteBuyer) {
-			fetch(`http://localhost:5000/users/buyer/${deletedUser._id}?email=${user.email}`, {
+			fetch(`https://sitpad-server.vercel.app/users/buyer/${deletedUser._id}?email=${user.email}`, {
 				method: 'DELETE',
 			})
 				.then((res) => res.json())
