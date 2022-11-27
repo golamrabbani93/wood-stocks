@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import toast from 'react-hot-toast';
 import {Link, useNavigate} from 'react-router-dom';
@@ -17,11 +17,11 @@ const SignUp = () => {
 	} = useForm();
 	const [userEmail, setUserEmail] = useState('');
 	const [token] = UseToken(userEmail);
-	if (token) {
+	useEffect(() => {
 		if (token) {
 			navigate('/login');
 		}
-	}
+	}, [navigate, token]);
 	//*Create user With EEail and Password
 	const handleSignUp = (data) => {
 		const {name, email, password} = data;
@@ -37,6 +37,7 @@ const SignUp = () => {
 				})
 					.then((res) => res.json())
 					.then((result) => {
+						setUserEmail(data.email);
 						if (result.acknowledged) {
 							toast.success('Sign Up Successfull', {
 								style: {
@@ -49,7 +50,6 @@ const SignUp = () => {
 						}
 					});
 
-				setUserEmail(data.email);
 				reset();
 			})
 			.catch((err) => {

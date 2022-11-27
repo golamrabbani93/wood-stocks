@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import toast from 'react-hot-toast';
 import {Link, useLocation, useNavigate} from 'react-router-dom';
@@ -19,14 +19,18 @@ const Login = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 	const from = location.state?.from?.pathname || '/';
-	if (token) {
-		navigate(from, {replace: true});
-	}
+
+	useEffect(() => {
+		if (token) {
+			navigate(from, {replace: true});
+		}
+	}, [navigate, token, from]);
 	//*Login With Email and Password
 	const handleLogin = (data) => {
 		const {email, password} = data;
 		LoginUser(email, password)
 			.then((result) => {
+				setUserEmail(data.email);
 				toast.success('Login Successfull', {
 					style: {
 						border: '1px solid #D94A38',
@@ -35,7 +39,6 @@ const Login = () => {
 						fontWeight: 'bold',
 					},
 				});
-				setUserEmail(data.email);
 				// navigate(from, {replace: true});
 				reset();
 			})
