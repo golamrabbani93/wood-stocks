@@ -104,6 +104,7 @@ const SignUp = () => {
 				})
 					.then((res) => res.json())
 					.then((data) => {
+						setUserEmail(user.email);
 						if (data.acknowledged) {
 							toast.success('Google Login Successfull', {
 								style: {
@@ -115,7 +116,6 @@ const SignUp = () => {
 							});
 						}
 					});
-				navigate('/');
 			})
 			.catch((err) => {
 				console.error(err);

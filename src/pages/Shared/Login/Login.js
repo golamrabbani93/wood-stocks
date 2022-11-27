@@ -60,17 +60,35 @@ const Login = () => {
 	const handleGoogleLogin = () => {
 		loginGoogle()
 			.then((result) => {
-				// const user = result.user;
-				toast.success('Google Login Successfull', {
-					style: {
-						border: '1px solid #D94A38',
-						padding: '16px',
-						color: '#D94A38',
-						fontWeight: 'bold',
+				const user = result.user;
+				const userinfo = {
+					name: user.displayName,
+					email: user.email,
+					userRole: 'Buyer',
+				};
+				fetch(`https://sitpad-server.vercel.app/user`, {
+					method: 'POST',
+					headers: {
+						'content-type': 'application/json',
 					},
-				});
+					body: JSON.stringify(userinfo),
+				})
+					.then((res) => res.json())
+					.then((data) => {
+						setUserEmail(user.email);
+						if (data.acknowledged) {
+							toast.success('Google Login Successfull', {
+								style: {
+									border: '1px solid #D94A38',
+									padding: '16px',
+									color: '#D94A38',
+									fontWeight: 'bold',
+								},
+							});
+						}
+					});
 
-				navigate(from, {replace: true});
+				// navigate(from, {replace: true});
 				reset();
 			})
 			.catch((err) => {
