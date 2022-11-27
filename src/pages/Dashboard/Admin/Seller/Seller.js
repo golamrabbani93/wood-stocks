@@ -44,16 +44,15 @@ const Seller = () => {
 	};
 	//*Seller verify
 	const verifySeller = (data) => {
-		console.log(data);
-		updateUserSeller(data._id);
+		updateUserSeller(data);
 		updateProductSeller(data);
 		refetch();
 	};
-	const updateUserSeller = (_id) => {
+	const updateUserSeller = (data) => {
 		const seller = {
 			seller: 'verified',
 		};
-		fetch(`http://localhost:5000/verify/seller/${_id}`, {
+		fetch(`http://localhost:5000/verify/seller/${data._id}`, {
 			method: 'PUT',
 			headers: {
 				'content-type': 'application/json',
@@ -89,6 +88,7 @@ const Seller = () => {
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.modifiedCount > 0) {
+					console.log('inside');
 				}
 			});
 	};

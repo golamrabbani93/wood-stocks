@@ -1,7 +1,6 @@
 import React from 'react';
 
 const SingleUser = ({user, stage, handleDeleteBuyer, verifySeller}) => {
-	console.log('🚀🚀: SingleUser -> user', user);
 	return (
 		<tr className="hover">
 			<th>{stage + 1}</th>
