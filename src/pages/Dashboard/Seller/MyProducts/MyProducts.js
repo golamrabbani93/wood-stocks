@@ -1,5 +1,6 @@
 import {useQuery} from '@tanstack/react-query';
 import React, {useContext} from 'react';
+import toast from 'react-hot-toast';
 import {AuthContext} from '../../../../Context/AuthProvider';
 import Loader from '../../../Shared/Loader/Loader';
 import SingleProduct from './SingleProduct';
@@ -21,7 +22,28 @@ const MyProducts = () => {
 			return data;
 		},
 	});
-
+	const productAd = (product) => {
+		fetch('http://localhost:5000/product/advertise', {
+			method: 'POST',
+			headers: {
+				'content-Type': 'application/json',
+			},
+			body: JSON.stringify(product),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.acknowledged) {
+					toast.success('Product Advertise Successfull', {
+						style: {
+							border: '1px solid #D94A38',
+							padding: '16px',
+							color: '#D94A38',
+							fontWeight: 'bold',
+						},
+					});
+				}
+			});
+	};
 	if (isLoading) {
 		return <Loader></Loader>;
 	}
@@ -42,7 +64,7 @@ const MyProducts = () => {
 							</thead>
 							<tbody>
 								{myProducts.map((pd) => (
-									<SingleProduct key={pd._id} product={pd}></SingleProduct>
+									<SingleProduct productAd={productAd} key={pd._id} product={pd}></SingleProduct>
 								))}
 							</tbody>
 						</table>

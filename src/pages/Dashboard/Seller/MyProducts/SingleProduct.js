@@ -1,7 +1,8 @@
 import React from 'react';
 
-const SingleProduct = ({product}) => {
+const SingleProduct = ({product, productAd}) => {
 	const {name, date, img, price, productStatus} = product;
+
 	const splitdate = date.split(' ')[0];
 	return (
 		<tr>
@@ -24,7 +25,9 @@ const SingleProduct = ({product}) => {
 			<td>{price}</td>
 			<th>
 				{productStatus === 'available' ? (
-					<button className="btn btn-primary btn-xs">Advertise</button>
+					<button onClick={() => productAd(product)} className="btn btn-primary btn-xs">
+						Advertise
+					</button>
 				) : (
 					<></>
 				)}
