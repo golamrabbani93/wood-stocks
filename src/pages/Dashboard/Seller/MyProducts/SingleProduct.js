@@ -1,7 +1,6 @@
 import React from 'react';
 
 const SingleProduct = ({product, productAd}) => {
-	console.log('🚀🚀: SingleProduct -> product', product);
 	const {name, date, img, price, productStatus, advertise} = product;
 
 	const splitdate = date.split(' ')[0];
