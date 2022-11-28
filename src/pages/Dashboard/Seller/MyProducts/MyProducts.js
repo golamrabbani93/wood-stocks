@@ -28,7 +28,7 @@ const MyProducts = () => {
 	});
 	const productAd = (product) => {
 		// upadateProduct(product._id);
-		fetch('http://localhost:5000/product/advertise', {
+		fetch('https://sitpad-server.vercel.app/product/advertise', {
 			method: 'POST',
 			headers: {
 				'content-Type': 'application/json',
@@ -56,7 +56,7 @@ const MyProducts = () => {
 		const product = {
 			advertise: true,
 		};
-		fetch(`http://localhost:5000/product/advertise/${_id}`, {
+		fetch(`https://sitpad-server.vercel.app/product/advertise/${_id}`, {
 			method: 'PUT',
 			headers: {
 				'content-type': 'application/json',

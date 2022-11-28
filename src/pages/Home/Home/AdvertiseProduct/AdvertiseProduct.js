@@ -8,7 +8,7 @@ import SingleCategoryProduct from '../../../Shared/CategoryProducts/SingleCatego
 const AdvertiseProduct = () => {
 	const [advertises,SetAdvertises]=useState()
 	useEffect(()=>{
-		axios.get('http://localhost:5000/product/advertise')
+		axios.get('https://sitpad-server.vercel.app/product/advertise')
 			.then((data)=>SetAdvertises(data.data))
 	},[])
 	const [buyProduct, setBuyProduct] = useState(null);
