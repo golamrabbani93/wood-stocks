@@ -1,7 +1,8 @@
 import React from 'react';
 
 const SingleProduct = ({product, productAd}) => {
-	const {name, date, img, price, productStatus} = product;
+	console.log('🚀🚀: SingleProduct -> product', product);
+	const {name, date, img, price, productStatus, advertise} = product;
 
 	const splitdate = date.split(' ')[0];
 	return (
@@ -25,9 +26,13 @@ const SingleProduct = ({product, productAd}) => {
 			<td>{price}</td>
 			<th>
 				{productStatus === 'available' ? (
-					<button onClick={() => productAd(product)} className="btn btn-primary btn-xs">
-						Advertise
-					</button>
+					advertise ? (
+						''
+					) : (
+						<button onClick={() => productAd(product)} className="btn btn-primary btn-xs">
+							Advertise
+						</button>
+					)
 				) : (
 					<></>
 				)}

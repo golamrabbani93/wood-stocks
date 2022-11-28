@@ -7,7 +7,11 @@ import SingleProduct from './SingleProduct';
 
 const MyProducts = () => {
 	const {user} = useContext(AuthContext);
-	const {data: myProducts = [], isLoading} = useQuery({
+	const {
+		data: myProducts = [],
+		isLoading,
+		refetch,
+	} = useQuery({
 		queryKey: ['products', user?.displayName],
 		queryFn: async () => {
 			const res = await fetch(
@@ -23,6 +27,7 @@ const MyProducts = () => {
 		},
 	});
 	const productAd = (product) => {
+		// upadateProduct(product._id);
 		fetch('http://localhost:5000/product/advertise', {
 			method: 'POST',
 			headers: {
@@ -33,6 +38,8 @@ const MyProducts = () => {
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.acknowledged) {
+					upadateProduct(product._id);
+					refetch();
 					toast.success('Product Advertise Successfull', {
 						style: {
 							border: '1px solid #D94A38',
@@ -41,6 +48,25 @@ const MyProducts = () => {
 							fontWeight: 'bold',
 						},
 					});
+				}
+			});
+	};
+	const upadateProduct = (_id) => {
+		console.log(_id);
+		const product = {
+			advertise: true,
+		};
+		fetch(`http://localhost:5000/product/advertise/${_id}`, {
+			method: 'PUT',
+			headers: {
+				'content-type': 'application/json',
+			},
+			body: JSON.stringify(product),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.modifiedCount > 0) {
+					console.log('update inside products Coleection');
 				}
 			});
 	};
