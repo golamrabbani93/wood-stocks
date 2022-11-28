@@ -1,10 +1,58 @@
-# Getting Started with Create React App
+# Website Name: Woods Stocks
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## live website link [https://woods-stocks.web.app/](https://woods-stocks.web.app/)
 
-## Available Scripts
+## live Data Server link [https://sitpad-server.vercel.app/](https://sitpad-server.vercel.app/)
 
-In the project directory, you can run:
+### Admin Email: admin@rabbani.com
+### Admin Password: #Xyz#2
+
+### This web page is a single page application built with React.
+
+### A list of technologies (frameworks, libraries) used in my project.
+
+### 1.React.
+
+### 2.React Router.
+
+### 3.FireBase Authentication.
+
+### 4.React Router Dom.
+
+### 5.React Hot Toast.
+
+### 6.Axios.
+
+### 7.React Spinner.
+
+### 8.Tailwind CSS.
+
+### 9.DaisyUI
+
+### 10.React Query
+
+## What does this website do?
+
+### This website is Furniture Buying Website.From this website Buy available Product.
+
+# What are the features of this website?
+
+## Homepage
+
+ The home page show,Navbar,banner,Product Categories and advertise Product
+
+## Product Category Page 
+
+Show All available products 
+
+## Dashboard page
+
+Dashboard page show User data,(Buyer see his/her buy products),(seller see his/her total Product and add product),(admin see total Buyer and selle)
+
+## Blog page
+
+You can visit the blog page to see answers to some questions.
+
 
 ### `npm start`
 
