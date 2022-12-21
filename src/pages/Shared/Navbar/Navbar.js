@@ -13,9 +13,11 @@ const Navbar = () => {
 			<NavLink className="mr-7" to={'/blog'}>
 				Blog
 			</NavLink>
-			<NavLink className="mr-7" to={'/dashboard'}>
-				DashBoard
-			</NavLink>
+			{user?.uid && (
+				<NavLink className="mr-7" to={'/dashboard'}>
+					DashBoard
+				</NavLink>
+			)}
 		</>
 	);
 	return (
