@@ -28,7 +28,7 @@ const SingleCategoryProduct = ({product, setBuyProduct}) => {
 		}
 	};
 	return (
-		<div className="card card-compact w-96 bg-base-100 shadow-xl text-left">
+		<div className="card card-compact m-6 md:m-0 md:w-96 bg-base-100 shadow-xl text-left">
 			<figure className="rounded-3xl">
 				<img src={img} alt="Shoes" style={{height: '270px'}} />
 			</figure>
