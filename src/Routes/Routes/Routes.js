@@ -77,25 +77,25 @@ export const router = createBrowserRouter([
 			{
 				path: '/dashboard/myorders',
 				element: (
-					<BuyerRoute>
-						<MyOrders></MyOrders>
-					</BuyerRoute>
+					// <BuyerRoute>
+					<MyOrders></MyOrders>
+					// </BuyerRoute>
 				),
 			},
 			{
 				path: '/dashboard/myproducts',
 				element: (
-					<SellerRoute>
-						<MyProducts></MyProducts>
-					</SellerRoute>
+					// <SellerRoute>
+					<MyProducts></MyProducts>
+					// </SellerRoute>
 				),
 			},
 			{
 				path: '/dashboard/addproduct',
 				element: (
-					<SellerRoute>
-						<AddProduct></AddProduct>
-					</SellerRoute>
+					// <SellerRoute>
+					<AddProduct></AddProduct>
+					// </SellerRoute>
 				),
 			},
 			{

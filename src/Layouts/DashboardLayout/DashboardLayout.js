@@ -18,28 +18,28 @@ const DashboardLayout = () => {
 				<div className="drawer-side  md:mr-3">
 					<label htmlFor="my-drawer-2" className="drawer-overlay"></label>
 					<ul className="menu p-4 w-60 md:w-80 bg-base-100 text-base-content border border-primary rounded-xl text-left ">
-						{userRole?.userRole === 'Buyer' ? (
-							<li className="mb-3">
-								<NavLink to={'/dashboard/myorders'} end>
-									My Orders
-								</NavLink>
-							</li>
-						) : (
-							<></>
-						)}
+						{/* {userRole?.userRole === 'Buyer' ? ( */}
+						<li className="mb-3">
+							<NavLink to={'/dashboard/myorders'} end>
+								My Orders
+							</NavLink>
+						</li>
+						{/* // ) : (
+						// 	<></>
+						// )} */}
 
-						{userRole?.userRole === 'Seller' ? (
-							<>
-								<li className="mb-3">
-									<NavLink to={'/dashboard/myproducts'}>My Products</NavLink>
-								</li>
-								<li className="mb-3">
-									<NavLink to={'/dashboard/addproduct'}>Add Product</NavLink>
-								</li>
-							</>
-						) : (
-							<></>
-						)}
+						{/* {userRole?.userRole === 'Seller' ? ( */}
+						<>
+							<li className="mb-3">
+								<NavLink to={'/dashboard/myproducts'}>My Products</NavLink>
+							</li>
+							<li className="mb-3">
+								<NavLink to={'/dashboard/addproduct'}>Add Product</NavLink>
+							</li>
+						</>
+						{/* // ) : (
+						// 	<></>
+						// )} */}
 						{userRole?.userRole === 'Admin' ? (
 							<>
 								<li className="mb-3">
