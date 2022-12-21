@@ -1,6 +1,8 @@
 import {useQuery} from '@tanstack/react-query';
 import React, {useState} from 'react';
+import {useContext} from 'react';
 import {useParams} from 'react-router-dom';
+import {AuthContext} from '../../../Context/AuthProvider';
 import UseTitle from '../../../hooks/UseTitle';
 import Loader from '../Loader/Loader';
 import Modal from '../Modal/Modal';
@@ -8,6 +10,7 @@ import SingleCategoryProduct from './SingleCategoryProduct';
 
 const CategoryProducts = () => {
 	UseTitle(`Products | Woods Stocks`);
+	const {user} = useContext(AuthContext);
 	const [buyProduct, setBuyProduct] = useState(null);
 	const {category_id} = useParams();
 	const {data: products = [], isLoading} = useQuery({
@@ -33,7 +36,11 @@ const CategoryProducts = () => {
 					></SingleCategoryProduct>
 				))}
 			</div>
-			{buyProduct && <Modal setBuyProduct={setBuyProduct} product={buyProduct}></Modal>}
+			{/* {user?.uid ?  : 'sign In'} */}
+
+			{user?.uid && buyProduct && (
+				<Modal setBuyProduct={setBuyProduct} product={buyProduct}></Modal>
+			)}
 		</div>
 	);
 };

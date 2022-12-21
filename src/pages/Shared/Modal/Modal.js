@@ -5,6 +5,7 @@ import {AuthContext} from '../../../Context/AuthProvider';
 const Modal = ({product, setBuyProduct}) => {
 	const {_id, name, price, og_price, seller_name, uses, img, location} = product;
 	const {user} = useContext(AuthContext);
+	console.log('🚀🚀: Modal -> user', user);
 	const [productData, SetProductData] = useState({});
 
 	const handlBuyProduct = (e) => {

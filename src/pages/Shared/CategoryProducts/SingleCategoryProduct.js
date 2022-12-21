@@ -1,6 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {useState} from 'react';
 import {FaCheckCircle} from 'react-icons/fa';
+import {Link} from 'react-router-dom';
+import {AuthContext} from '../../../Context/AuthProvider';
 const SingleCategoryProduct = ({product, setBuyProduct}) => {
+	const [checkUser, setCheckuser] = useState(false);
+	const {user} = useContext(AuthContext);
 	const {
 		date,
 		condition,
@@ -15,6 +20,13 @@ const SingleCategoryProduct = ({product, setBuyProduct}) => {
 		purchase,
 	} = product;
 	const splitdate = date.split(' ')[0];
+	const handaleUserCheck = () => {
+		if (user?.uid) {
+			setBuyProduct(product);
+		} else {
+			setCheckuser(true);
+		}
+	};
 	return (
 		<div className="card card-compact w-96 bg-base-100 shadow-xl text-left">
 			<figure className="rounded-3xl">
@@ -53,12 +65,24 @@ const SingleCategoryProduct = ({product, setBuyProduct}) => {
 				</div>
 				<div className="card-actions justify-end">
 					<label
-						onClick={() => setBuyProduct(product)}
+						onClick={() => handaleUserCheck()}
 						htmlFor="by-product"
 						className="btn  btn-primary"
 					>
 						Buy Now
 					</label>
+				</div>
+				<div className="block text-center">
+					{checkUser ? (
+						<p>
+							Please Login to Buy
+							<Link className="text-primary" to="/login">
+								<span className="ml-2 underline">Login</span>
+							</Link>
+						</p>
+					) : (
+						''
+					)}
 				</div>
 			</div>
 		</div>
