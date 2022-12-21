@@ -42,9 +42,9 @@ export const router = createBrowserRouter([
 			{
 				path: '/products/:category_id',
 				element: (
-					<PrivateRoute>
-						<CategoryProducts></CategoryProducts>
-					</PrivateRoute>
+					// <PrivateRoute>
+					<CategoryProducts></CategoryProducts>
+					// </PrivateRoute>
 				),
 			},
 
